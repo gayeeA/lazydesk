@@ -1,8 +1,12 @@
 import json, os, httpx
+from dotenv import load_dotenv
 from .schemas import CATEGORIES
+
+load_dotenv()
 URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
-MODEL = os.getenv("LAZYDESK_MODEL", "gemma3:4b")
+MODEL = os.getenv("LAZYDESK_MODEL", "gemma3:1b")
 THRESH = float(os.getenv("LAZYDESK_CONFIDENCE_THRESHOLD", "0.75"))
+NUM_GPU = int(os.getenv("OLLAMA_NUM_GPU", "0"))
 PROMPT = """You organize files. Classify the file into exactly one category from: {cats}.
 Return ONLY JSON: {{"category":"","suggested_filename":"","summary":"","confidence":0.0,"reason":""}}
 suggested_filename: short, descriptive, Words_With_Underscores, keep the original extension {ext}.
@@ -17,8 +21,9 @@ def classify(name: str, info: dict) -> dict:
     text = info["text"] or "(no extractable text; judge by name/type only)"
     prompt = PROMPT.format(cats=", ".join(CATEGORIES), ext=info["ext"], name=name, size=info["size"], text=text)
     try:
+        options = {"temperature": 0.1, "num_gpu": NUM_GPU}
         r = httpx.post(f"{URL}/api/chat", timeout=120, json={
-            "model": MODEL, "stream": False, "format": "json", "options": {"temperature": 0.1},
+            "model": MODEL, "stream": False, "format": "json", "options": options,
             "messages": [{"role":"user","content":prompt}]})
         r.raise_for_status()
         d = json.loads(r.json()["message"]["content"])
