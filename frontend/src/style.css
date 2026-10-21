@@ -1,0 +1,19 @@
+:root{--bg:#e8edf0;--ink:#16232d;--mute:#5b6b76;--line:#c3ced5;--ok:#1f7a5a;--warn:#b5651d;--card:#f7f9fa}
+@media(prefers-color-scheme:dark){:root{--bg:#10181e;--ink:#e6edf1;--mute:#93a4af;--line:#2a3944;--ok:#4cc29a;--warn:#e0a064;--card:#17222a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,sans-serif}
+main{max-width:820px;margin:0 auto;padding:40px 20px 80px}
+h1{font-size:2.4rem;margin:0;letter-spacing:-.02em}.tag{margin:4px 0 28px;color:var(--mute);font-size:1.15rem}
+.drop{border:2px dashed var(--ink);border-radius:6px;padding:64px 24px;text-align:center;cursor:pointer;display:grid;gap:8px;transition:background .15s}
+.drop strong{font-size:1.4rem}.drop span{color:var(--mute)}.drop.over,.drop:hover{background:var(--card)}
+.drop:focus-visible,button:focus-visible{outline:3px solid var(--ok);outline-offset:2px}
+.summary{margin:28px 0 12px;font-size:1.1rem}.err{color:var(--warn);font-weight:600}
+.list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ok);border-radius:4px;padding:12px 16px}
+.card.NeedsReview,.card.Error{border-left-color:var(--warn)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}.from{text-decoration:line-through;color:var(--mute)}
+.arrow{color:var(--mute);font-size:.85rem}.to{font-weight:700}.badge{margin-left:auto;font-size:.85rem;border:1px solid var(--line);padding:1px 8px;border-radius:99px}
+.sum{margin:6px 0 2px}.meta{margin:0;color:var(--mute);font-size:.9rem}
+.edit{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center}.edit>input{flex:1;min-width:180px}
+select,.edit>input{padding:5px 8px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);font:inherit}
+.go{margin-top:18px;padding:12px 22px;font:inherit;font-weight:700;background:var(--ink);color:var(--bg);border:0;border-radius:4px;cursor:pointer}
+.go:disabled{opacity:.4;cursor:not-allowed}

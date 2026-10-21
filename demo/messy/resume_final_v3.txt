@@ -1,0 +1,4 @@
+ALEX DEMO
+Software Engineer
+Experience: Intern at Example Corp. Skills: Python, React, FastAPI.
+Education: B.Tech Computer Science

@@ -1,0 +1,4 @@
+Invoice #1042
+Amount due: 120.00
+Due date: 2026-11-01
+Thanks for your business.
